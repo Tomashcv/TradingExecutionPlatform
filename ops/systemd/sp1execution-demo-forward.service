@@ -5,9 +5,9 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-WorkingDirectory=%h/Desktop/projs/SP1Execution
-EnvironmentFile=%h/Desktop/projs/SP1Execution/.env
-ExecStart=%h/Desktop/projs/SP1Execution/.venv/bin/python %h/Desktop/projs/SP1Execution/scripts/sp1_demo_forward_runner_v04.py --db-path %h/Desktop/projs/SP1Execution/state/sp1execution.sqlite --confirm-demo
+WorkingDirectory=%h/TradingExecutionPlatform
+EnvironmentFile=%h/TradingExecutionPlatform/.env
+ExecStart=%h/TradingExecutionPlatform/.venv/bin/python %h/TradingExecutionPlatform/scripts/sp1_demo_forward_runner_v04.py --db-path %h/TradingExecutionPlatform/state/sp1execution.sqlite --confirm-demo
 UMask=0077
 NoNewPrivileges=true
 TimeoutStartSec=10min

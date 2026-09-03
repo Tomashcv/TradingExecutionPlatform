@@ -27,7 +27,7 @@ def _db():
     con = sqlite3.connect(":memory:")
     ensure_schema(con)
     con.execute(
-        "INSERT INTO machine_state(id,schema_version,revision,lifecycle_state,entry_policy,entry_state,strategy_state,membership_state,execution_state,active_membership_month,active_membership_json,active_overlay,sp2_mix_json,old_peak,trough,rearm_old_ath,capital_basis_eur,strategy_cash_eur,external_cash_debt_eur,realized_fees_eur,realized_fx_eur,marked_nav_eur,created_at,updated_at) VALUES(1,'0.4.0',1,'DEMO','IMMEDIATE_SP2','ENTRY_COMPLETE','NORMAL','ACTIVE','IDLE','2026-07','{\"month\":\"2026-07\",\"symbols\":[\"AAPL\",\"NVDA\"]}',0.0,'{\"AAPL\":0.5,\"NVDA\":0.5}',NULL,NULL,NULL,10000.0,0.00,0.00,10.00,0.0,NULL,?,?)",
+        "INSERT INTO machine_state(id,schema_version,revision,lifecycle_state,entry_policy,entry_state,strategy_state,membership_state,execution_state,active_membership_month,active_membership_json,active_overlay,sp2_mix_json,old_peak,trough,rearm_old_ath,capital_basis_eur,strategy_cash_eur,external_cash_debt_eur,realized_fees_eur,realized_fx_eur,marked_nav_eur,created_at,updated_at) VALUES(1,'0.4.0',1,'DEMO','IMMEDIATE_SP2','ENTRY_COMPLETE','NORMAL','ACTIVE','IDLE','2026-07','{\"month\":\"2026-07\",\"symbols\":[\"AAPL\",\"NVDA\"]}',0.0,'{\"AAPL\":0.5,\"NVDA\":0.5}',NULL,NULL,NULL,10000.0,-50.0,50.0,10.0,0.0,NULL,?,?)",
         (NOW, NOW),
     )
     con.commit()

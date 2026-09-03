@@ -12,7 +12,7 @@ from datetime import UTC, datetime, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
-ROOT = Path.home() / "Desktop/projs/SP1Execution"
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DB = ROOT / "state/sp1execution.sqlite"
 DEFAULT_LOG = ROOT / "logs/sp1_demo_forward_v04.jsonl"
 NY = ZoneInfo("America/New_York")

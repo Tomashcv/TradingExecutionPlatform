@@ -87,10 +87,10 @@ def _legacy_db(path):
         "strategy_state": "NORMAL",
         "execution_state": "IDLE",
         "capital_basis_eur": 10000.0,
-        "strategy_cash_eur": 0.00,
-        "external_cash_debt_eur": 0.00,
-        "bootstrap_broker_debit_eur": 10000.00,
-        "bootstrap_fees_eur": 10.00,
+        "strategy_cash_eur": -50.0,
+        "external_cash_debt_eur": 50.0,
+        "bootstrap_broker_debit_eur": 10050.0,
+        "bootstrap_fees_eur": 10.0,
     }
 
     for key, value in values.items():
@@ -139,9 +139,9 @@ def test_migration_preserves_legacy_rows_and_maps_current_state(tmp_path):
 
     assert state["active_overlay"] == 0.0
     assert state["capital_basis_eur"] == 10000.0
-    assert state["strategy_cash_eur"] == 0.00
-    assert state["external_cash_debt_eur"] == 0.00
-    assert state["realized_fees_eur"] == 10.00
+    assert state["strategy_cash_eur"] == -50.0
+    assert state["external_cash_debt_eur"] == 50.0
+    assert state["realized_fees_eur"] == 10.0
 
 
 def test_migration_is_idempotent(tmp_path):

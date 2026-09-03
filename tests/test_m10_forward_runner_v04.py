@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-ROOT = Path.home() / "Desktop/projs/SP1Execution"
+ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/sp1_demo_forward_runner_v04.py"
 
 

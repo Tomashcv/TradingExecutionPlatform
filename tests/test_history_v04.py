@@ -25,8 +25,8 @@ def _item(
     status="FILLED",
     fill_quantity=None,
     price=100.0,
-    net_value=5000.00,
-    fee=-5.00,
+    net_value=5000.0,
+    fee=-5.0,
 ):
     if fill_quantity is None:
         fill_quantity = filled_quantity
@@ -73,8 +73,8 @@ def test_synthetic_aapl_parses():
     assert record.broker_order_id == "90000000001"
     assert record.ticker == "AAPL_US_EQ"
     assert record.status == "FILLED"
-    assert record.fills[0].wallet_net_value == 5000.00
-    assert record.fills[0].fees[0].amount == -5.00
+    assert record.fills[0].wallet_net_value == 5000.0
+    assert record.fills[0].fees[0].amount == -5.0
 
 
 def test_synthetic_nvda_parses():
@@ -87,7 +87,7 @@ def test_synthetic_nvda_parses():
             filled_quantity=25.0,
             price=200.0,
             net_value=5000.0,
-            fee=-5.00,
+            fee=-5.0,
         )
     )
     assert record.broker_order_id == "90000000002"

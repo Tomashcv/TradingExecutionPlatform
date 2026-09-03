@@ -20,8 +20,8 @@ def _history_item(
     side="BUY",
     quantity=50.0,
     price=100.0,
-    net_value=5000.00,
-    fee=-5.00,
+    net_value=5000.0,
+    fee=-5.0,
 ):
     signed_quantity = quantity if side == "BUY" else -abs(quantity)
 
@@ -120,13 +120,13 @@ def _db(
     return con
 
 
-def test_real_aapl_buy_normalizes_exact_wallet_debit():
+def test_synthetic_buy_normalizes_exact_wallet_debit():
     order = parse_history_item(_history_item())
     event = normalize_order_fills(order)[0]
 
-    assert event.cash_delta_eur == -5000.00
-    assert event.fee_eur == 5.00
-    assert event.wallet_net_value_eur == 5000.00
+    assert event.cash_delta_eur == -5000.0
+    assert event.fee_eur == 5.0
+    assert event.wallet_net_value_eur == 5000.0
     assert event.event_key == "t212:fill:90000000001:91000000001"
 
 
@@ -140,15 +140,15 @@ def test_synthetic_two_fill_bootstrap_totals():
             ticker="NVDA_US_EQ",
             quantity=25.0,
             price=200.0,
-            net_value=5000.00,
-            fee=-5.00,
+            net_value=5000.0,
+            fee=-5.0,
         )
     )
 
     events = normalize_order_fills(aapl) + normalize_order_fills(nvda)
 
-    assert round(sum(x.cash_delta_eur for x in events), 2) == -10000.00
-    assert round(sum(x.fee_eur for x in events), 2) == 10.00
+    assert round(sum(x.cash_delta_eur for x in events), 2) == -10000.0
+    assert round(sum(x.fee_eur for x in events), 2) == 10.0
 
 
 def test_buy_wallet_net_value_already_includes_fee_no_double_subtract():
@@ -158,8 +158,8 @@ def test_buy_wallet_net_value_already_includes_fee_no_double_subtract():
 
     result = apply_fill_event(con, event)
 
-    assert result.new_strategy_cash_eur == 5000.00
-    assert result.new_realized_fees_eur == 5.00
+    assert result.new_strategy_cash_eur == 5000.0
+    assert result.new_realized_fees_eur == 5.0
 
     row = con.execute(
         """
@@ -170,11 +170,11 @@ def test_buy_wallet_net_value_already_includes_fee_no_double_subtract():
         (event.event_key,),
     ).fetchone()
 
-    assert row == (-5000.00, 5.00)
+    assert row == (-5000.0, 5.0)
 
 
 def test_sell_credit_repays_existing_external_debt_by_mirror():
-    con = _db(cash=-50.00, debt=50.00, fees=10.00)
+    con = _db(cash=-50.0, debt=50.0, fees=10.0)
 
     order = parse_history_item(
         _history_item(
@@ -190,14 +190,14 @@ def test_sell_credit_repays_existing_external_debt_by_mirror():
 
     result = apply_fill_event(con, event)
 
-    assert result.new_strategy_cash_eur == 4950.00
+    assert result.new_strategy_cash_eur == 4950.0
     assert result.new_external_cash_debt_eur == 0.0
-    assert result.external_debt_change_eur == -50.00
-    assert result.new_realized_fees_eur == 15.00
+    assert result.external_debt_change_eur == -50.0
+    assert result.new_realized_fees_eur == 15.0
 
 
 def test_partial_sell_credit_keeps_only_remaining_negative_cash_as_debt():
-    con = _db(cash=-50.00, debt=50.00)
+    con = _db(cash=-50.0, debt=50.0)
 
     order = parse_history_item(
         _history_item(
@@ -213,8 +213,8 @@ def test_partial_sell_credit_keeps_only_remaining_negative_cash_as_debt():
         normalize_order_fills(order)[0],
     )
 
-    assert result.new_strategy_cash_eur == -30.00
-    assert result.new_external_cash_debt_eur == 30.00
+    assert result.new_strategy_cash_eur == -30.0
+    assert result.new_external_cash_debt_eur == 30.0
 
 
 def test_observed_buy_overshoot_is_recorded_not_hidden():

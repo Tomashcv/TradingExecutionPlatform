@@ -74,7 +74,7 @@ def test_account_summary_synthetic_eur_snapshot():
     x = normalize_account_summary({
         "currency": "EUR",
         "cash": {
-            "availableToTrade": 40000.00,
+            "availableToTrade": 40000.0,
             "reservedForOrders": 0,
             "inPies": 0,
         },
@@ -84,7 +84,7 @@ def test_account_summary_synthetic_eur_snapshot():
     assert (
         x.available_to_trade_eur
         ==
-        Decimal("40000.00")
+        Decimal("40000.0")
     )
 
     assert x.broker_post_authorized is False

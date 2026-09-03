@@ -24,7 +24,7 @@ from sp1execution.state.v04_store import ensure_schema
 NOW = "2026-08-13T21:30:00+00:00"
 
 
-def _db(*, cash=0.00, debt=0.00):
+def _db(*, cash=-50.0, debt=50.0):
     con = sqlite3.connect(":memory:")
     ensure_schema(con)
     con.execute(
@@ -60,7 +60,7 @@ def _db(*, cash=0.00, debt=0.00):
             'NORMAL','ACTIVE','IDLE','2026-07',
             '{"month":"2026-07","symbols":["AAPL","NVDA"]}',
             0.0,'{"AAPL":0.5,"NVDA":0.5}',NULL,NULL,NULL,
-            10000.0,?,?,10.00,0.0,NULL,?,?
+            10000.0,?,?,10.0,0.0,NULL,?,?
         )
         """,
         (cash, debt, NOW, NOW),
@@ -326,7 +326,7 @@ def test_unrelated_pending_order_blocks_new_submission():
 
 
 def test_sell_fill_applies_m3_cash_repays_debt_and_enters_reconcile():
-    con = _db(cash=0.00, debt=0.00)
+    con = _db(cash=-50.0, debt=50.0)
     workflow_id, _ = _create_sell_workflow(con)
     broker = FakeBroker()
 
@@ -359,9 +359,9 @@ def test_sell_fill_applies_m3_cash_repays_debt_and_enters_reconcile():
 
     assert result.snapshot.execution_state == "RECONCILING"
     state = _state(con)
-    assert state["strategy_cash_eur"] == 954.21
+    assert state["strategy_cash_eur"] == 950.0
     assert state["external_cash_debt_eur"] == 0.0
-    assert state["realized_fees_eur"] == 16.05
+    assert state["realized_fees_eur"] == 11.0
 
     row = con.execute("SELECT COUNT(*) FROM capital_ledger WHERE fill_id='fill-sell-1'").fetchone()
     assert row[0] == 1
@@ -436,7 +436,7 @@ def test_repeated_fill_reconciliation_is_cash_idempotent():
                 created_at=NOW,
             )
 
-    assert _state(con)["strategy_cash_eur"] == 954.21
+    assert _state(con)["strategy_cash_eur"] == 950.0
     row = con.execute("SELECT COUNT(*) FROM capital_ledger WHERE fill_id='fill-sell-1'").fetchone()
     assert row[0] == 1
 

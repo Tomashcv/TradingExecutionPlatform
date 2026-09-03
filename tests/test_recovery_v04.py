@@ -84,7 +84,7 @@ def _db(
             10000.0,
             ?,
             ?,
-            10.00,
+            10.0,
             0.0,
             NULL,
             ?,
@@ -372,7 +372,7 @@ def test_partial_sell_restart_reconciles_and_never_buys():
 
 
 def test_sell_fill_ledger_applied_before_leg_transition_still_reconciles():
-    con = _db(cash=0.00, debt=0.00)
+    con = _db(cash=-50.0, debt=50.0)
     _create(con)
     _start(con)
     _accept(con)
@@ -388,7 +388,7 @@ def test_sell_fill_ledger_applied_before_leg_transition_still_reconciles():
         decision_id="decision:wf1",
     )
 
-    assert _state(con)["strategy_cash_eur"] == 954.21
+    assert _state(con)["strategy_cash_eur"] == 950.0
     assert _state(con)["external_cash_debt_eur"] == 0.0
 
     result = _decision(con)

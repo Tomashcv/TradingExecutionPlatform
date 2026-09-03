@@ -15,57 +15,26 @@ from sp1execution.recovery.t212_demo_adapter_v01 import (
 )
 
 
-def account(
-    available="40000.00",
-):
+def account(available="40000.0"):
     return normalize_account_summary({
         "currency": "EUR",
-        "cash": {
-            "availableToTrade": available,
-            "reservedForOrders": 0,
-            "inPies": 0,
-        },
+        "cash": {"availableToTrade": available, "reservedForOrders": 0, "inPies": 0},
     })
 
 
 def current_positions():
-    """Synthetic EUR wallet values; no broker-account snapshot data."""
     return normalize_positions([
         {
-            "instrument": {
-                "ticker": "NVDA_US_EQ",
-                "isin": "US67066G1040",
-            },
-            "quantity": 25.0,
-            "quantityAvailableForTrading": 25.0,
-            "quantityInPies": 0,
-            "currentPrice": 200.0,
-            "averagePricePaid": 200.0,
-            "walletImpact": {
-                "currency": "EUR",
-                "currentValue": 5000.0,
-                "fxImpact": 0.0,
-                "totalCost": 5000.0,
-                "unrealizedProfitLoss": 0.0,
-            },
+            "instrument": {"ticker": "NVDA_US_EQ", "isin": "US67066G1040"},
+            "quantity": 25.0, "quantityAvailableForTrading": 25.0, "quantityInPies": 0,
+            "currentPrice": 200.0, "averagePricePaid": 200.0,
+            "walletImpact": {"currency": "EUR", "currentValue": 5000.0, "fxImpact": 0.0, "totalCost": 5000.0, "unrealizedProfitLoss": 0.0},
         },
         {
-            "instrument": {
-                "ticker": "AAPL_US_EQ",
-                "isin": "US0378331005",
-            },
-            "quantity": 50.0,
-            "quantityAvailableForTrading": 50.0,
-            "quantityInPies": 0,
-            "currentPrice": 100.0,
-            "averagePricePaid": 100.0,
-            "walletImpact": {
-                "currency": "EUR",
-                "currentValue": 5000.0,
-                "fxImpact": 0.0,
-                "totalCost": 5000.0,
-                "unrealizedProfitLoss": 0.0,
-            },
+            "instrument": {"ticker": "AAPL_US_EQ", "isin": "US0378331005"},
+            "quantity": 50.0, "quantityAvailableForTrading": 50.0, "quantityInPies": 0,
+            "currentPrice": 100.0, "averagePricePaid": 100.0,
+            "walletImpact": {"currency": "EUR", "currentValue": 5000.0, "fxImpact": 0.0, "totalCost": 5000.0, "unrealizedProfitLoss": 0.0},
         },
     ])
 
@@ -95,19 +64,19 @@ def test_current_snapshot_10pct_uses_no_external_broker_cash():
     assert (
         plan.total_strategy_nav_eur
         ==
-        Decimal("10000.00")
+        Decimal("10000.0")
     )
 
     assert (
         plan.target_recovery_eur
         ==
-        Decimal("1000.000")
+        Decimal("1000.0")
     )
 
     assert (
         plan.recovery_buy_eur
         ==
-        Decimal("1000.000")
+        Decimal("1000.0")
     )
 
     assert (
@@ -119,7 +88,7 @@ def test_current_snapshot_10pct_uses_no_external_broker_cash():
     assert (
         plan.sp2_sale_total_eur
         ==
-        Decimal("1000.000")
+        Decimal("1000.0")
     )
 
     sales = dict(
@@ -129,13 +98,13 @@ def test_current_snapshot_10pct_uses_no_external_broker_cash():
     assert (
         sales["AAPL_US_EQ"]
         ==
-        Decimal("500.000")
+        Decimal("500.0")
     )
 
     assert (
         sales["NVDA_US_EQ"]
         ==
-        Decimal("500.000")
+        Decimal("500.0")
     )
 
     assert result.requires_sell_fill_before_buy is True
@@ -168,13 +137,13 @@ def test_large_broker_cash_does_not_inflate_strategy_nav():
     assert (
         result.physical_target.total_strategy_nav_eur
         ==
-        Decimal("10000.00")
+        Decimal("10000.0")
     )
 
     assert (
         result.physical_target.target_recovery_eur
         ==
-        Decimal("3000.000")
+        Decimal("3000.0")
     )
 
     assert (
@@ -201,13 +170,13 @@ def test_explicit_strategy_reserve_is_used_before_sp2_sales():
     assert (
         plan.total_strategy_nav_eur
         ==
-        Decimal("11000.00")
+        Decimal("11000.0")
     )
 
     assert (
         plan.target_recovery_eur
         ==
-        Decimal("1100.000")
+        Decimal("1100.0")
     )
 
     assert (
@@ -219,13 +188,13 @@ def test_explicit_strategy_reserve_is_used_before_sp2_sales():
     assert (
         plan.sp2_sale_total_eur
         ==
-        Decimal("100.000")
+        Decimal("100.0")
     )
 
     assert (
         result.broker_cash_outside_strategy_reserve_eur
         ==
-        Decimal("39000.00")
+        Decimal("39000.0")
     )
 
 

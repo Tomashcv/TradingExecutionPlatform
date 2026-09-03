@@ -41,12 +41,12 @@ def _history_item(
         "fill": {
             "filledAt": "2026-08-13T13:30:00.000Z",
             "id": oid + 1000,
-            "price": 100.0,
+            "price": 304.26,
             "quantity": filled,
             "walletImpact": {
                 "currency": "EUR",
                 "fxRate": 1.15348061,
-                "netValue": 5000.00,
+                "netValue": 5000.0,
                 "taxes": [],
             },
         },

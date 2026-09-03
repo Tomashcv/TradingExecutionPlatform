@@ -88,7 +88,7 @@ def _init_file_db(path: Path) -> str:
                 '{"month":"2026-07","symbols":["AAPL","NVDA"]}',
                 0.0,'{"AAPL":0.5,"NVDA":0.5}',
                 NULL,NULL,NULL,
-                10000.0,1000.0,0.0,10.00,0.0,NULL,?,?
+                10000.0,1000.0,0.0,10.0,0.0,NULL,?,?
             )
             """,
             (NOW, NOW),
