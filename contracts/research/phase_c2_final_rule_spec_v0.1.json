@@ -1,0 +1,81 @@
+{
+  "crash_reference": {
+    "ath_definition": "causal running all-time-high close",
+    "drawdown_definition": "1 - close / causal_running_ath",
+    "future_information_used": false,
+    "instrument": "S&P500 / IVV",
+    "signal_field": "daily close"
+  },
+  "cycle_semantics": {
+    "active_cycles_may_not_overlap": true,
+    "cancel_cycle_if_old_ath_recovered_strictly_before_first_delayed_entry": true,
+    "no_new_cycle_until_old_ath_recovered": true,
+    "original_55_percent_recovery_handoff_used_as_final_exit": false,
+    "original_B2B_handoff_role": "source-cycle segmentation only"
+  },
+  "frozen_final_cell": "SOXX:D40:H378",
+  "frozen_final_representative": "CORE_RETURN",
+  "historical_asset_reselection_authorized": false,
+  "historical_delay_retuning_authorized": false,
+  "historical_hold_retuning_authorized": false,
+  "historical_subset_reselection_authorized": false,
+  "historical_threshold_retuning_authorized": false,
+  "hold_semantics": {
+    "fixed_exit_destination": "SP2",
+    "fixed_exit_target_recovery_sleeve": 0.0,
+    "fixed_hold_us_trading_intervals": 378,
+    "hold_clock_anchor": "first actual delayed entry execution",
+    "later_delayed_scaleups_allowed_before_fixed_exit": true,
+    "later_scaleups_reset_hold_clock": false
+  },
+  "live_execution_authorized": false,
+  "next_phase": "C3 execution mechanics freeze and broker/Xetra validation; no historical retuning",
+  "normal_state": {
+    "SP2_weight": 1.0,
+    "recovery_sleeve_weight": 0.0
+  },
+  "recovery_sleeve": {
+    "C1_execution_proxy_supported": true,
+    "execution_candidate": "VanEck Semiconductor UCITS ETF",
+    "execution_isin": "IE00BMC38736",
+    "execution_ticker": "VVSM.DE / Xetra",
+    "execution_trading_currency": "EUR",
+    "explicit_trade_fx_conversion_required": false,
+    "historical_research_proxy": "SOXX"
+  },
+  "remaining_execution_blockers": [
+    "exact Xetra execution-session mapping",
+    "order timestamp / order type",
+    "broker tradability and instrument identifier",
+    "minimum order / fractional-share semantics",
+    "commission and spread model",
+    "Xetra holiday mismatch handling"
+  ],
+  "research_only": true,
+  "rule_id": "SP2_RECOVERY_CORE_RETURN_D40_H378_V1",
+  "signal_execution_semantics": {
+    "delay_applies_independently_to_each_entry_or_scale_signal": true,
+    "entry_or_scale_delay_us_trading_intervals": 40,
+    "signal": "close T",
+    "source_execution_anchor": "next canonical US trading session T+1"
+  },
+  "status": "FINAL_HISTORICAL_CAUSAL_SPEC",
+  "trigger_ladder": [
+    {
+      "drawdown": 0.3,
+      "recovery_sleeve_target": 0.1
+    },
+    {
+      "drawdown": 0.35,
+      "recovery_sleeve_target": 0.3
+    },
+    {
+      "drawdown": 0.45,
+      "recovery_sleeve_target": 0.6
+    },
+    {
+      "drawdown": 0.5,
+      "recovery_sleeve_target": 1.0
+    }
+  ]
+}

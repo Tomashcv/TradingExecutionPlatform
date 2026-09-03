@@ -1,0 +1,10 @@
+{
+  "contract_id": "SP1_MEMBERSHIP_2026_07_BOOTSTRAP",
+  "month": "2026-07",
+  "source": "iShares IVV holdings",
+  "source_as_of": "2026-07-29",
+  "symbols": ["AAPL", "NVDA"],
+  "weights_on_membership_change": [0.5, 0.5],
+  "rank_order_is_irrelevant": true,
+  "note": "Bootstrap contract for launch. Same Top2 set observed around month-end; future months are frozen from archived IVV snapshots."
+}

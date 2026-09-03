@@ -1,0 +1,11 @@
+[Unit]
+Description=Run SP1Execution Demo forward cycle every 15 minutes
+
+[Timer]
+OnCalendar=Mon..Fri *-*-* *:00/15:00
+Persistent=true
+AccuracySec=30s
+Unit=sp1execution-demo-forward.service
+
+[Install]
+WantedBy=timers.target

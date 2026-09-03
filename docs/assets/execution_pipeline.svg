@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="160" viewBox="0 0 1080 160" role="img">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#9ca3af"/></marker></defs>
+<rect x="30.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="105.0" y="80.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Causal Inputs</text>
+<line x1="183.0" y1="74.0" x2="199.0" y2="74.0" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="204.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="279.0" y="70.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Deterministic</text>
+<text x="279.0" y="90.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Plan</text>
+<line x1="357.0" y1="74.0" x2="373.0" y2="74.0" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="378.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="453.0" y="80.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Durable Journal</text>
+<line x1="531.0" y1="74.0" x2="547.0" y2="74.0" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="552.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="627.0" y="80.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Submission Guard</text>
+<line x1="705.0" y1="74.0" x2="721.0" y2="74.0" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="726.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="801.0" y="80.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Reconciliation</text>
+<line x1="879.0" y1="74.0" x2="895.0" y2="74.0" stroke="#9ca3af" stroke-width="2.5" marker-end="url(#arrow)"/>
+<rect x="900.0" y="42" width="150" height="64" rx="10" fill="#1f2937" stroke="#6b7280" stroke-width="2"/>
+<text x="975.0" y="80.0" fill="#ffffff" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Recovery State</text>
+</svg>

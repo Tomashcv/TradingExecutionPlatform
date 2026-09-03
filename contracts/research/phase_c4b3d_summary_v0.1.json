@@ -1,0 +1,15 @@
+{
+  "c4b3c_baseline_reproduction_gate": true,
+  "final_personal_tax_result_authorized": false,
+  "historical_recovery_rule_changed": false,
+  "historical_sp2_rule_changed": false,
+  "live_execution_authorized": false,
+  "minimum_reinvest_continuing_edge_eur": -686.7329724112933,
+  "minimum_reinvest_liquidation_edge_eur": -258.5869716841262,
+  "policy_freeze_authorized": true,
+  "realistic_reinvest_wins_all": false,
+  "realistic_reserve_wins_all": true,
+  "research_dividend_policy_selection": "TBILL_CRASH_RESERVE_NET28",
+  "reserve_upper_bound_used_for_selection": false,
+  "timing_candidate_replayed": true
+}

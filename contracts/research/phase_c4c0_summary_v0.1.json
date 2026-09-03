@@ -1,0 +1,20 @@
+{
+  "dividend_policy": "TBILL_CRASH_RESERVE_NET28",
+  "fractional_orders_supported": true,
+  "historical_recovery_rule_changed": false,
+  "historical_sp2_rule_changed": false,
+  "limit_orders_supported": true,
+  "live_execution_authorized": false,
+  "next_phase": "C4C1_SETTLEMENT_AND_FILL_LAG_FALSIFICATION",
+  "phase": "C4C0",
+  "physical_execution_architecture_authorized_for_research": true,
+  "preferred_listing_currency": "USD",
+  "preferred_operational_listing_candidate": "SMH.GB",
+  "preferred_rotation_requires_explicit_fx": false,
+  "previous_c3_listing": "SMH.IT",
+  "recovery_isin": "IE00BMC38736",
+  "same_isin": true,
+  "same_session_sale_funded_rotation_authorized": false,
+  "unsettled_proceeds_reuse_verified": false,
+  "venue_change_is_historical_asset_reselection": false
+}

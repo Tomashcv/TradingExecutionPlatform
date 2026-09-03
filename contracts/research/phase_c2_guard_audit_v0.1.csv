@@ -1,0 +1,4 @@
+cycle_id,fixed_exit,old_ath_recovery_date,effective_no_new_cycle_until,next_cycle_id,next_source_signal,no_reentry_before_guard_release
+1,2004-03-09,2005-12-13,2005-12-13,2.0,2008-10-06,True
+2,2010-06-07,2012-08-16,2012-08-16,3.0,2020-03-20,True
+3,2021-11-16,2020-08-10,2021-11-16,,,True

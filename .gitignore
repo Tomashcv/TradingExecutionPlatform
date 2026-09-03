@@ -1,0 +1,24 @@
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+state/*.sqlite*
+state/*.json
+logs/*
+!logs/.gitkeep
+.DS_Store
+
+*.egg-info/
+state/t212_*_instruments_cache.json
+state/market_data/
+state/holdings/
+state/memberships/
+state/sp1execution.sqlite*
+state/t212_*_cache.json
+state/evidence/
+state/backups/
+
+# Private/account-specific evidence is never part of the public repository.
+evidence/

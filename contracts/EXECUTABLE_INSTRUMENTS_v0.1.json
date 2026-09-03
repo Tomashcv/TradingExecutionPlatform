@@ -1,0 +1,22 @@
+{
+  "contract_id": "SP1_EXECUTABLE_INSTRUMENTS_V0_1",
+  "status": "PAPER_VALIDATION",
+  "broker": "Trading 212 Invest Public API",
+  "account_primary_currency": "EUR",
+  "sp500_sleeve": {
+    "purpose": "Executable UCITS S&P 500 accumulation sleeve",
+    "shortName": "VUAA",
+    "ticker": "VUAAm_EQ",
+    "isin": "IE00BFMXXD54",
+    "currencyCode": "EUR",
+    "type": "ETF",
+    "name": "Vanguard S&P 500 (Acc)"
+  },
+  "sp2_stock_resolution": {
+    "rule": "exact shortName == requested US ticker AND type == STOCK AND currencyCode == USD",
+    "forbid_fuzzy_match": true,
+    "forbid_leveraged_etf_substitution": true,
+    "forbid_short_etf_substitution": true
+  },
+  "live_orders": false
+}

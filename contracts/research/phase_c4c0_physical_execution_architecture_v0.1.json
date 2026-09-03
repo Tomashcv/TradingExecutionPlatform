@@ -1,0 +1,162 @@
+{
+  "causal_session_mapping": {
+    "calendar": "must be exchange-calendar aware",
+    "dst_awareness_required": true,
+    "execution": "first eligible joint US/London trading session strictly after the relevant US maturity/decision",
+    "hardcoded_weekday_calendar_allowed": false,
+    "holiday_awareness_required": true,
+    "maturity_known_after_us_session": true,
+    "same_day_europe_execution_after_us_close": false
+  },
+  "currency_execution": {
+    "broker_fx_conversion_if_needed": "separate operational cost; not silently ignored",
+    "condition": "orders funded from an available USD balance and placed using instrument currency",
+    "explicit_fx_conversion_required_for_preferred_rotation": false,
+    "physical_sp2_currency": "USD",
+    "preferred_path": "SP2 USD -> SMH.GB USD -> SP2 USD",
+    "preferred_recovery_listing_currency": "USD"
+  },
+  "historical_rule": {
+    "detector": "S&P500/IVV drawdown from previous running ATH",
+    "entry_delay_us_trading_intervals": 40,
+    "fixed_hold_us_trading_intervals": 378,
+    "historical_research_sleeve": "SOXX",
+    "historical_rule_changed": false,
+    "hold_clock": "anchored by first actual delayed entry",
+    "ladder": {
+      "-30%": 0.1,
+      "-35%": 0.3,
+      "-45%": 0.6,
+      "-50%": 1.0
+    },
+    "later_scaleups_reset_hold_clock": false,
+    "normal_state": "100% physical SP2 plus separate accumulated reserve",
+    "rule_id": "SP2_RECOVERY_CORE_RETURN_D40_H378_V1",
+    "source_execution": "signal close T -> source execution T+1"
+  },
+  "live_execution_authorized": false,
+  "live_orders_authorized": false,
+  "next_phase": "C4C1_SETTLEMENT_AND_FILL_LAG_FALSIFICATION",
+  "orders": {
+    "final_limit_offset": null,
+    "fractional_execution_supported_by_broker_public_docs": true,
+    "limit_offset_historically_optimized": false,
+    "limit_orders_supported_by_broker_public_docs": true,
+    "market_orders_live_default": false,
+    "no_fill_policy_frozen": false,
+    "partial_fill_policy_frozen": false,
+    "provisional_order_family": "marketable limit",
+    "retry_policy_frozen": false
+  },
+  "phase": "C4C0",
+  "physical_execution_architecture_authorized_for_research": true,
+  "physical_sp2": {
+    "membership_set_change": "rebalance new set to 50/50",
+    "number_of_constituents": 2,
+    "rank_swap_same_set": "no trade",
+    "recovery_exit_repurchase": "restore current pre-existing SP2 composition; if SP2 was fully sold, use current causal SP2 composition, not automatic 50/50 unless the canonical monthly membership rule independently requires a set-change rebalance",
+    "recovery_funding_sales": "sell current SP2 holdings proportionally by market value",
+    "same_set": "no rebalance",
+    "security_type": "individual US-listed equities"
+  },
+  "public_source_provenance": {
+    "lse_hours": "https://www.londonstockexchange.com/personal-investing/faqs",
+    "trading212_fractional": "https://helpcentre.trading212.com/hc/en-us/articles/9511997937437-Can-I-trade-with-fractional-shares",
+    "trading212_fx_fee": "https://helpcentre.trading212.com/hc/en-us/articles/360018909758-What-is-the-FX-fee-Invest-Stocks-ISA",
+    "trading212_limit_orders": "https://helpcentre.trading212.com/hc/en-us/articles/360007139778-Limit-Orders",
+    "trading212_multi_currency": "https://helpcentre.trading212.com/hc/en-us/articles/11669719976093-What-is-a-multi-currency-account",
+    "trading212_settlement": "https://helpcentre.trading212.com/hc/en-us/articles/17690870525213-What-is-settlement",
+    "trading212_smh_london": "https://www.trading212.com/fr/trading-instruments/invest/SMH.GB",
+    "trading212_smh_milan": "https://www.trading212.com/pt/trading-instruments/invest/SMH.IT",
+    "vaneck_ucits": "https://www.vaneck.com/ucits/investments/semiconductor-etf"
+  },
+  "recovery_entry_state_machine": [
+    "compute current total strategy NAV",
+    "compute frozen target sleeve value",
+    "use available reserve first",
+    "calculate remaining funding deficit",
+    "sell physical SP2 proportionally by current market value",
+    "do not borrow or create synthetic leverage",
+    "buy recovery UCITS immediately only with cash that broker rules make available for trading",
+    "if SP2 sale proceeds are not yet reusable, residual purchase waits according to settlement-safe policy"
+  ],
+  "recovery_exit_state_machine": [
+    "sell recovery UCITS according to frozen H378 exit",
+    "do not reset historical timing",
+    "use available proceeds to rebuild physical SP2 according to current causal SP2 composition",
+    "if sale proceeds are not immediately reusable, residual SP2 repurchase follows settlement-safe policy",
+    "reserve remains separate from normal SP2 exposure"
+  ],
+  "recovery_instrument": {
+    "distribution_policy": "accumulating",
+    "fund": "VanEck Semiconductor UCITS ETF",
+    "historical_proxy": "SOXX",
+    "historical_proxy_is_exact_clone": false,
+    "isin": "IE00BMC38736",
+    "replication": "physical",
+    "ter": 0.0035,
+    "ucits_prelaunch_backfill_allowed": false
+  },
+  "research_only": true,
+  "reserve": {
+    "actual_live_reserve_instrument_selected": false,
+    "crash_funding_priority": [
+      "reserve",
+      "physical SP2 proportional sale"
+    ],
+    "destination": "defensive liquid reserve",
+    "dividends": "after applicable dividend tax/withholding cashflow, net dividends are not automatically reinvested into the stock",
+    "research_policy": "TBILL_CRASH_RESERVE_NET28",
+    "tb3ms_is_live_instrument": false,
+    "tb3ms_role": "historical causal economic return proxy only",
+    "uses": [
+      "first source of recovery-sleeve funding",
+      "tax-liquidity payments",
+      "remaining capital continues earning reserve carry"
+    ]
+  },
+  "settlement": {
+    "broker_public_docs_confirm_unsettled_cash_exists": true,
+    "next_required_test": "settlement/fill-lag falsification plus broker account-level confirmation of sale-proceeds reuse",
+    "reserve_funded_purchase_does_not_depend_on_sale_settlement": true,
+    "same_session_reuse_of_unsettled_sale_proceeds_verified": false,
+    "same_session_smh_sale_funded_sp2_buy_authorized": false,
+    "same_session_sp2_sale_funded_smh_buy_authorized": false
+  },
+  "status": "PHYSICAL_EXECUTION_ARCHITECTURE_FREEZE",
+  "tax": {
+    "broker_treaty_status_verified": false,
+    "dividend_policy_source": "C4B3D",
+    "final_personal_tax_result_authorized": false,
+    "googl_2015_final_portuguese_treatment_authorized": false,
+    "mechanism": "reserve provides tax-payment liquidity so strategy can avoid some forced sales of physical SP2",
+    "research_dividend_policy": "TBILL_CRASH_RESERVE_NET28",
+    "taxes_avoided": false
+  },
+  "track": "SP2RecoveryResearch",
+  "venue_candidates": {
+    "preferred_operational_candidate": {
+      "broker_symbol_reference": "SMH.GB",
+      "display_ticker": "SMH",
+      "isin": "IE00BMC38736",
+      "reason": "same UCITS fund as previously validated execution candidate; USD trading currency matches physical US SP2 sale proceeds and can avoid explicit EUR/USD conversion during crash rotations",
+      "trading_currency": "USD",
+      "venue": "London Stock Exchange"
+    },
+    "previously_validated_candidate": {
+      "broker_symbol_reference": "SMH.IT",
+      "c3_relation": "already causally validated same-ISIN candidate",
+      "display_ticker": "SMH",
+      "isin": "IE00BMC38736",
+      "trading_currency": "EUR",
+      "venue": "Borsa Italiana"
+    }
+  },
+  "venue_change_semantics": {
+    "historical_alpha_reoptimization": false,
+    "historical_asset_reselection": false,
+    "reason": "broker/currency execution simplification only",
+    "same_isin": true
+  },
+  "version": "v0.1"
+}

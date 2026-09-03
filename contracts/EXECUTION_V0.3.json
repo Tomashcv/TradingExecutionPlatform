@@ -1,0 +1,40 @@
+{
+  "contract_id": "SP1_EXECUTION_V0_3",
+  "status": "DEMO_EXECUTION_ONLY",
+  "broker": "Trading212 Invest Public API",
+  "live_submission_hard_disabled": true,
+  "paper_market_data": "Yahoo chart endpoint, temporary paper-only provider",
+  "paper_market_data_live_approved": false,
+  "membership": {
+    "source": "iShares IVV holdings",
+    "frequency": "monthly",
+    "same_set": "NO_TRADE_ALLOW_DRIFT",
+    "rank_swap": "NO_TRADE_ALLOW_DRIFT",
+    "membership_change": "REBALANCE_SP2_SLEEVE_50_50"
+  },
+  "crash_overlay": {
+    "base": "SP2_TRUE_HOLD",
+    "sp500_executable": "VUAAm_EQ",
+    "sp500_signal_proxy": "IVV",
+    "signal_close_t_execute_t_plus_1": true,
+    "thresholds": [
+      [-30.0, 10.0],
+      [-35.0, 30.0],
+      [-45.0, 60.0],
+      [-50.0, 100.0]
+    ],
+    "handoff_recovery_pct": 55.0,
+    "post_handoff_guard": "NO_NEW_CYCLE_UNTIL_OLD_ATH_RECOVERED"
+  },
+  "order_safety": {
+    "journal": "SQLite",
+    "duplicate_decision_id_forbidden": true,
+    "ambiguous_submission_fails_closed": true,
+    "demo_execution_requires_explicit_flag": true,
+    "live_execution": false,
+    "shorting": false,
+    "margin": false,
+    "options": false,
+    "crypto": false
+  }
+}
