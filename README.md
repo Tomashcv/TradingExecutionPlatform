@@ -134,6 +134,12 @@ See [Publication boundary](docs/PUBLICATION_BOUNDARY.md).
 
 This is an execution-engineering research project, not a production brokerage service. It does not send live orders in its published configuration and it makes no claim that the underlying strategy is a deployable or persistent trading edge.
 
+## License
+
+The software and original documentation in this repository are licensed under the [MIT License](LICENSE).
+
+Third-party broker APIs, market data, provider materials, trademarks and other third-party materials are not covered by this license and remain subject to their respective terms.
+
 ## Disclaimer
 
 Independent software/research project. It is not affiliated with or endorsed by Trading 212 or any market-data provider referenced by the code.
